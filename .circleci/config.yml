@@ -165,6 +165,9 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - checkout
+      - run: 
+          name: module install
+          command: npm i
       - run:
           name: Running the test
           command: npm run test:cli
