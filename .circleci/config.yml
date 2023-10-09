@@ -167,7 +167,10 @@ jobs:
       - checkout
       - run: 
           name: module install
-          command: npm i
+          command: |
+            node -v
+            npm -v
+            npm i
       - run:
           name: Running the test
           command: npm run test:cli
