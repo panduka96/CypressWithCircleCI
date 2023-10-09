@@ -162,15 +162,12 @@ version: 2.1
 jobs:
   Testing:
     docker:
-      - image: cimg/base:2021.04
+      - image: cimg/node:17.2
     steps:
       - checkout
       - run: 
           name: module install
-          command: |
-            node -v
-            npm -v
-            npm i
+          command: npm i
       - run:
           name: Running the test
           command: npm run test:cli
