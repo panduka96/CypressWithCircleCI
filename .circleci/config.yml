@@ -171,11 +171,6 @@ jobs:
       - run:
           name: Running the test
           command: npm run test:cli
-  Reporting:
-    docker:
-      - image: cypress/base:14.16.0
-    steps:
-      - checkout
       - run:
           name: Generate test report
           command: npm run create:html:report
@@ -184,6 +179,3 @@ workflows:
   Testing-Workflow:
     jobs:
       - Testing
-      - Reporting:
-          requires:
-            - Testing
