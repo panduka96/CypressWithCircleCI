@@ -1,18 +1,18 @@
-version: 2.1
-orbs:
-  cypress: cypress-io/cypress@3
-workflows:
-  build:
-    jobs:
-      - cypress/run:
-          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-          # in CircleCI → Project Settings → Environment Variables
-          # Records in parallel to Cypress Cloud 
-          # https://docs.cypress.io/guides/guides/parallelization
-          parallelism: 2 # Uses 2 parallel instances
-          # Starts web server for E2E tests - replace with your own server invocation
-          # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
-          cypress-command: 'npx cypress run --record --parallel'
+# version: 2.1
+# orbs:
+#   cypress: cypress-io/cypress@3
+# workflows:
+#   build:
+#     jobs:
+#       - cypress/run:
+#           # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
+#           # in CircleCI → Project Settings → Environment Variables
+#           # Records in parallel to Cypress Cloud 
+#           # https://docs.cypress.io/guides/guides/parallelization
+#           parallelism: 2 # Uses 2 parallel instances
+#           # Starts web server for E2E tests - replace with your own server invocation
+#           # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
+#           cypress-command: 'npx cypress run --record --parallel'
 
 #############################################################
 
@@ -176,50 +176,50 @@ workflows:
 
 ##################################################
 
-# version: 2.1
-# jobs:
-#   Testing:
-#     docker:
-#       - image: cypress/base:14.16.0
-#     parallelism: 2
-#     resource_class: small
-#     steps:
-#       - checkout
-#       - run: 
-#           name: module install
-#           command: npm i
-#       - run:
-#           name: Running the test
-#           command: npm run test:cli
-#       - run:
-#           name: Generate test report
-#           command: npm run create:html:report
-#   Deploy:
-#     docker:
-#       - image: cypress/base:14.16.0
-#     resource_class: small
-#     steps:
-#       - run: 
-#           name: Deploy the build
-#           command: echo 'The build is deployed'
-# workflows:
-#   Testing-Workflow:
-#     jobs:
-#       - Testing
-#       - Hold-for-Approval:
-#           type: approval
-#           requires:
-#             - Testing
-#       - Deploy:
-#           requires:
-#             - Hold-for-Approval
-#   nightly:
-#     triggers:
-#       - schedule:
-#           cron: "0 0 * * *"
-#           filters:
-#             branches:
-#               only:
-#                 - master
-#     jobs:
-#       - Testing
+version: 2.1
+jobs:
+  Testing:
+    docker:
+      - image: cypress/base:14.16.0
+    parallelism: 2
+    resource_class: small
+    steps:
+      - checkout
+      - run: 
+          name: module install
+          command: npm i
+      - run:
+          name: Running the test
+          command: npm run test:cli
+      - run:
+          name: Generate test report
+          command: npm run create:html:report
+  Deploy:
+    docker:
+      - image: cypress/base:14.16.0
+    resource_class: small
+    steps:
+      - run: 
+          name: Deploy the build
+          command: echo 'The build is deployed'
+workflows:
+  Testing-Workflow:
+    jobs:
+      - Testing
+      - Hold-for-Approval:
+          type: approval
+          requires:
+            - Testing
+      - Deploy:
+          requires:
+            - Hold-for-Approval
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - Testing
