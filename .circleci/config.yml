@@ -173,7 +173,7 @@ jobs:
           command: npm run test:cli
   Reporting:
     docker:
-      - image: cimg/base:2021.04
+      - image: cypress/base:14.16.0
     steps:
       - run:
           name: Generate test report
