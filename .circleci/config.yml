@@ -192,3 +192,14 @@ workflows:
       - Deploy:
           requires:
             - Hold-for-Approval
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - main
+                - beta
+    jobs:
+      - Testing
