@@ -162,7 +162,7 @@ version: 2.1
 jobs:
   Testing:
     docker:
-      - image: cimg/node:17.2
+      - image: cypress/base:14.16.0
     steps:
       - checkout
       - run: 
@@ -170,9 +170,7 @@ jobs:
           command: npm i
       - run:
           name: Running the test
-          command: |
-            xvfb-run -a
-            npm run test:cli
+          command: npm run test:cli
   Reporting:
     docker:
       - image: cimg/base:2021.04
