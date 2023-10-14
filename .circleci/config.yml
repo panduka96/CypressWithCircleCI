@@ -185,8 +185,6 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - store_test_results:
-          path: test-results
       - run: 
           name: module install
           command: npm i
