@@ -8,7 +8,7 @@
     "posttest": "echo Post-Test",
     "test": "echo Test",
     "cy-test": "cypress run",
-    "test:cli": "npx cypress run --record --parallel",
+    "test:cli": "npx cypress run --record",
     "merge:reports": "mochawesome-merge mochawesome-report/*.json > Test-Results/cypress-combined-report.json",
     "create:html:report": "npm run merge:reports && marge --reportDir TestReport cypress-combined-report.json"
   },
