@@ -191,6 +191,8 @@ jobs:
       - run:
           name: Running the test
           command: npm run test:cli
+      - store_test_results:
+          path: test-results
       - run:
           name: Generate test report
           command: npm run create:html:report
