@@ -196,8 +196,8 @@ jobs:
           command: |
             npm run merge:reports
             # npm run create:html:report
-      - store_test_results:
-          path: Test-Results
+      # - store_test_results:
+      #     path: Test-Results
   Deploy:
     docker:
       - image: cypress/base:14.16.0
