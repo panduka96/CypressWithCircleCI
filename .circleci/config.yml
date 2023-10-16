@@ -217,16 +217,16 @@ workflows:
       - Deploy:
           requires:
             - Hold-for-Approval
-  # nightly:
-  #   triggers:
-  #     - schedule:
-  #         cron: "0 0 * * *"
-  #         filters:
-  #           branches:
-  #             only:
-  #               - master
-  #   jobs:
-  #     - Testing
-  #     - Deploy:
-  #         requires:
-  #           - Testing
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - Testing
+      - Deploy:
+          requires:
+            - Testing
