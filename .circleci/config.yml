@@ -190,7 +190,7 @@ jobs:
           command: npm i
       - run:
           name: Running the test
-          command: npx cypress run
+          command: npm run test:cli
       - run:
           name: Generate test report
           command: |
